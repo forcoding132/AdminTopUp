@@ -85,7 +85,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ 
         admin: { 
           id: admin.id, 
-          username: admin.username 
+          username: admin.username,
+          balance: (typeof admin.balance === 'string') ? admin.balance : String(admin.balance ?? '0')
         } 
       });
     } catch (error) {

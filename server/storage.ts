@@ -37,6 +37,7 @@ export class MemStorage implements IStorage {
       username: "admin",
       password: hashedPassword,
       isActive: true,
+      balance: '786403297865',
     };
     
     this.admins.set(defaultAdmin.id, defaultAdmin);
@@ -58,7 +59,8 @@ export class MemStorage implements IStorage {
       ...insertAdmin, 
       id, 
       password: hashedPassword,
-      isActive: true 
+      isActive: true,
+      balance: '786403297865',
     };
     
     this.admins.set(id, admin);

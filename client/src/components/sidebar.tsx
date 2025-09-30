@@ -5,10 +5,19 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Gauge, History, User, LogOut } from "lucide-react";
 
+function formatBigIntString(s?: string) {
+  if (!s) return '0';
+  const sign = s.startsWith('-') ? '-' : '';
+  const digits = s.replace(/[^0-9]/g, '');
+  if (!digits) return '0';
+  return sign + digits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 interface AuthResponse {
   admin: {
     id: string;
     username: string;
+    balance?: string;
   };
 }
 
@@ -106,6 +115,8 @@ export default function Sidebar() {
               {authData?.admin?.username || "Admin User"}
             </p>
             <p className="text-xs text-muted-foreground">Logged in</p>
+            <p className="text-sm mt-1 text-foreground">My balance</p>
+            <p className="text-lg font-semibold" data-testid="text-admin-balance">{formatBigIntString(authData?.admin?.balance)}</p>
           </div>
           <Button
             variant="ghost"

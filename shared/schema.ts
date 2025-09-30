@@ -8,6 +8,7 @@ export const admins = pgTable("admins", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   isActive: boolean("is_active").notNull().default(true),
+  balance: text("balance").notNull().default('1000000000000000000'),
 });
 
 export const transactions = pgTable("transactions", {
